@@ -46,8 +46,8 @@ error() {
 
 	echo -e "\033[1;31m" # bold; red
 	echo -n "Test"
-	echo $(get_project_name())
-	echo $(get_project_file())
+	echo $(get_project_name)
+	echo $(get_project_file)
 	echo $projectfile
 	echo -n " !     ERROR: "
 	# this will be fed from stdin

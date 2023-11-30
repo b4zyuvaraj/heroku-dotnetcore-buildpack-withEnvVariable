@@ -46,8 +46,10 @@ error() {
 
 	echo -e "\033[1;31m" # bold; red
 	echo -n "Test"
-	echo $(get_project_name)
-	echo $(get_project_file)
+	echo -n $(get_project_name)
+	echo -n "Error Msg"
+	echo -n $(get_project_file)
+	
 	echo $projectfile
 	echo -n " !     ERROR: "
 	# this will be fed from stdin
@@ -107,15 +109,10 @@ get_project_file() {
 	
 	# Read the project file path from the environment variable
 	PROJECT_FILE=${PROJECT_FILE:-""}
-
-	# Check if the environment variable is set
-	if [[ -z $PROJECT_FILE ]]; then
-    	echo "Error: Please set the PROJECT_FILE environment variable to the path of the project file."
-    	exit 1
-	fi
-
 	# Use the project file path to perform any desired actions
 	echo "Project file path: $PROJECT_FILE"
+	project_filename="CattleManagement.Web/${dirname}"
+	echo "Project file path: $project_filename"
 	local projectfile=$(x=$(dirname $(find $1 -maxdepth 1 -type f | head -1)); while [[ "$x" =~ $1 ]] ; do find "$x" -maxdepth 1 -name *.csproj; x=`dirname "$x"`; done)
 	echo $projectfile
 }

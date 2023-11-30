@@ -110,6 +110,11 @@ get_project_file() {
 	prefix_text= "CattleManagement.Web/"
 	project_filename="$prefix_text $projectfile"
 	echo "Project file path: $project_filename"
+
+	if [[ -z $projectfile ]]; then
+    	echo "Error: Please set the project_filename environment variable to the path of the project file."
+    	exit 1
+	fi
 	echo $projectfile
 }
 

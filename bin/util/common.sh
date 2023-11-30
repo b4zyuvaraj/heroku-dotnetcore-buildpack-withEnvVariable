@@ -105,15 +105,11 @@ remove_beginning_slash() {
 
 # args:
 # input - $1
-get_project_file() {
-	
-	# Read the project file path from the environment variable
-	PROJECT_FILE=${PROJECT_FILE:-""}
-	# Use the project file path to perform any desired actions
-	echo "Project file path: $PROJECT_FILE"
-	project_filename="CattleManagement.Web/${dirname}"
-	echo "Project file path: $project_filename"
+get_project_file() {	
 	local projectfile=$(x=$(dirname $(find $1 -maxdepth 1 -type f | head -1)); while [[ "$x" =~ $1 ]] ; do find "$x" -maxdepth 1 -name *.csproj; x=`dirname "$x"`; done)
+	prefix_text= "CattleManagement.Web/"
+	project_filename="$prefix_text $projectfile"
+	echo "Project file path: $project_filename"
 	echo $projectfile
 }
 
